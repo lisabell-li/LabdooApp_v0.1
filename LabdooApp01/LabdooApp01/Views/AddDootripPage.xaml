@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys ="clr-namespace:System;assembly=mscorlib"
+             x:Class="LabdooApp01.Views.AddDootripPage"
+             Title="Add Dootrip">
+    <ScrollView>
+        <TableView HasUnevenRows="True" Intent="Form" >
+            <TableRoot >
+                <TableSection Title="Your trip" >
+                    <EntryCell LabelColor="Black" Label="Destination*" Placeholder=""></EntryCell>
+                    
+                    <ViewCell>
+                        <StackLayout>
+                        <StackLayout Orientation="Horizontal" Padding="13,0">
+                             <Label  x:Name="selectSchool" Text="Do you know to which school you would like to bring laptops?*" VerticalOptions="Center"/>
+                            <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" >
+                                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                                        <Button x:Name="yesButton" Text="Yes" IsEnabled="True" Clicked="YesClicked"   BackgroundColor="#ff6309"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                                        <Button x:Name="noButton" Text="No" IsEnabled="True" Clicked="NoClicked"  BackgroundColor="#ff6309"/>
+                                </StackLayout>
+                            </StackLayout>
+                            </StackLayout>
+                            <StackLayout  x:Name="EdoovillageSection" IsVisible="False" Orientation="Horizontal" Padding="13,0">
+                                <Label   Text="School*" VerticalOptions="Center"/>
+                                <Picker Title="Select School" x:Name="EdoovillagesPicker" SelectedIndexChanged="Picker_OnSelectedIndexChanged" HorizontalOptions="EndAndExpand"></Picker>
+                            </StackLayout>
+                   
+                        </StackLayout>
+                    </ViewCell>
+                    <EntryCell Label="Origin of your trip (city)*" Placeholder=""></EntryCell>
+                    <EntryCell  Label="Origin of your trip (country)*" Placeholder=""></EntryCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="13,0">
+                            <Label  Text="Departure Date*" VerticalOptions="Center" />
+                            <DatePicker x:Name="DepartureDatePicker"  Date="{x:Static sys:DateTime.Today}" Format="dd MM yyyy" MinimumDate="01 01 2017" DateSelected="DatePicker_DepartureDateSelected" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="13,0">
+                            <Label Text="Arrival Date*" VerticalOptions="Center"/>
+                            <DatePicker x:Name="ArrivalDatePicker" Date="{Binding Source={x:Reference DepartureDatePicker}, Path=Value}" Format="dd MM yyyy" MinimumDate="01 01 2017" DateSelected="DatePicker_ArrivalDateSelected" HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </ViewCell>
+                    <EntryCell LabelColor="Black" Label="Number of dootronics you can carry*" Placeholder="" Keyboard="Numeric" ></EntryCell>
+                    <EntryCell LabelColor="Black" Label="Your email address*" Placeholder="" Keyboard="Email" ></EntryCell>
+
+                    <!--Stepper color can not be set in xamarin forms :-( -> implement your own stepper functionality with two buttons or remove it (done)
+                    <ViewCell>
+                        <StackLayout Padding="13,0">
+                            <Label  Text="Number of Dootronics you can carry*" VerticalOptions="Center"/>
+                            <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                                    <Stepper x:Name="dootronicStepper" Minimum="1" BackgroundColor="#579d1c"></Stepper>
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Source={x:Reference dootronicStepper}, Path=Value}" FontSize="20" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        </ViewCell>
+                       -->
+                
+                    <ViewCell>
+                        <StackLayout>
+                            <Button x:Name="SaveDootripButton" Text="Save" IsEnabled="True" Clicked="SaveDootrip" HorizontalOptions="EndAndExpand"  TextColor="White" BackgroundColor="#ff6309"/>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+
+            </TableRoot>
+        </TableView>
+   
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LabdooApp01.Views.NewsPage"
+             Title="NewsPage">
+    <ScrollView>
+        <StackLayout Padding="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="15">
+            <Label Text="{Binding Source={x:Reference distanceSlider}, Path=Value, StringFormat='Show news in distance of {0:F1} km'} "/>
+            <Slider x:Name="distanceSlider"/>
+            <Label Text="Neuer Hub in Berlin"/>
+            <Button Text="Weiterlesen" Command=""/>
+            <Label Text="Erfolgreicher Sanititzing Workhuop in Zürich"/>
+            <Button Text="Weiterlesen" Command=""/>
+            <Label Text="15 Laptops haben Kenia erreicht."/>
+            <Button Text="Weiterlesen" Command=""/>
+            <Label Text="Labdoo Konferenz in Barcelona"/>
+            <Button Text="Weiterlesen" Command=""/>
+            <Label Text="Erfolgreicher Sanititzing Workhuop in Zürich"/>
+            <Button Text="Weiterlesen" Command=""/>
+            <Label Text=""/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
