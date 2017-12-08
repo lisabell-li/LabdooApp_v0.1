@@ -32,6 +32,11 @@ namespace LabdooApp01
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
                   
+                    new NavigationPage(new DootronicsPage())
+                    {
+                        Title = "Dootronics",
+                        Icon = Device.OnPlatform("tab_about.png",null,null)
+                    },
                     new NavigationPage(new NewsPage())
                     {
                         Title = "News",

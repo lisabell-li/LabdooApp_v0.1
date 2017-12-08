@@ -10,6 +10,10 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
+/*
+ * View of the start screen which contains buttons for easy access
+ */
 namespace LabdooApp01.Views
 {
 
@@ -25,34 +29,19 @@ namespace LabdooApp01.Views
         {
             await Navigation.PushAsync(new AddDootripPage());
         }
+        
+            async void ShowDootrip_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DootripPage());
+        }
+        
+                async void ShowDootronics_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DootronicsPage());
+        }
     }
 
-    class StartPageViewModel : INotifyPropertyChanged
-    {
+  
 
-        public StartPageViewModel()
-        {
-            IncreaseCountCommand = new Command(IncreaseCount);
-        }
-
-        int count;
-
-        string countDisplay = "You clicked 0 times.";
-        public string CountDisplay
-        {
-            get { return countDisplay; }
-            set { countDisplay = value; OnPropertyChanged(); }
-        }
-
-        public ICommand IncreaseCountCommand { get; }
-
-        void IncreaseCount() =>
-            CountDisplay = $"You clicked {++count} times";
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-    }
+       
 }

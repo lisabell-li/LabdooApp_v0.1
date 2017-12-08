@@ -3,37 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LabdooApp01.Views.StartPage"
              BackgroundColor="#004586"
-             Title="Labdoo">
-
-    <StackLayout VerticalOptions="Center"  Spacing="20">
-        <StackLayout.Padding>
-            <!--On iOS there is a top bar -> 40 instead of 20 -->
-            <OnPlatform x:TypeArguments="Thickness"   
+             Title="">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem1" Order="Primary" Icon="logo-2.png"   Priority="0" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+       
+        <StackLayout VerticalOptions="Center"  Spacing="20">
+            <StackLayout.Padding>
+                <!--On iOS there is a top bar -> 40 instead of 20 -->
+                <OnPlatform x:TypeArguments="Thickness"   
         iOS="20,40,20,20" 
         Android="20,20,20,20"
         WinPhone="20,20,20,20"/>
-        </StackLayout.Padding>
-        <Label 
+            </StackLayout.Padding>
+            <Label 
 			Text="Welcome to Labdoo"
 			TextColor="#ff6309"
 			FontSize="30" 
 			FontAttributes="Bold"  
 			HorizontalOptions="Center" />
-        <Label 
-			Text="Bridge the digital divde" 
+            <Label 
+			Text="Bridge the digital divide" 
 			TextColor="White"
 			FontSize="18" 
 			HorizontalOptions="Center" />
-      
-        <Button 
-			Text="Donate a laptop" 
-			TextColor="White"
-			BackgroundColor="#579d1c" />
-        <Button 
+
+            
+            <Button 
 			Text="Transport a laptop" 
 			TextColor="White"
 			BackgroundColor="#579d1c" 
             Clicked="AddDootrip_Clicked"/>
-    </StackLayout>
+            <Button 
+			Text="Show transportation Trips" 
+			TextColor="White"
+			BackgroundColor="#579d1c" 
+            Clicked="ShowDootrip_Clicked"
+            />
+            <Button 
+			Text="Show Dootronics" 
+			TextColor="White"
+			BackgroundColor="#579d1c" 
+            Clicked="ShowDootronics_Clicked"/>
+            <Label 
+			Text="Get help" 
+			TextColor="White"
+			FontSize="18" 
+			HorizontalOptions="Center" />
+            <Button 
+			Text="Wiki for doners" 
+			TextColor="White"
+			BackgroundColor="#579d1c" 
+           />
+            <Button 
+			Text="Wiki for traveller" 
+			TextColor="White"
+			BackgroundColor="#579d1c" 
+            />
+            <Button 
+			Text="Hubs in your area" 
+			TextColor="White"
+			BackgroundColor="#579d1c" 
+            />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
 

@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using ModernHttpClient;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net;
 
 /*
  * View of "Create Dootrip page" which contains a form to create a new dootrip
@@ -22,11 +25,11 @@ namespace LabdooApp01.Views
      */
     public class EdoovillagesForPicker
     {
-      public int Id { get; set; }
-      public string Title { get; set; }
-      public string Body { get; set; }
+       // public int Id { get; set; }
+        public string Title { get; set; }
+        public string Type { get; set; }
     }
-
+  
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddDootripPage : ContentPage
@@ -34,12 +37,13 @@ namespace LabdooApp01.Views
 
         private IList<EdoovillagesForPicker> _edoovillages;
         private const string Url = "http://jsonplaceholder.typicode.com/posts";
+        private const string Url2 = "http://jsonplaceholder.typicode.com/posts";
         private HttpClient _client = new HttpClient();
         private ObservableCollection<EdoovillagesForPicker> _schools;
+        private DootripPage dootripPageInst = new DootripPage();
 
         public AddDootripPage()
-        {
-           
+        {           
             InitializeComponent();
             /*_edoovillages = GetEdoovillages();
             foreach (var school in GetEdoovillages())
@@ -51,11 +55,14 @@ namespace LabdooApp01.Views
          */
         async protected override void OnAppearing()
         {
-            var content =await _client.GetStringAsync(Url);
+
+            var client = new HttpClient();
+            var content = await client.GetStringAsync(Url);
             var edoovillagesFromContent = JsonConvert.DeserializeObject<List<EdoovillagesForPicker>>(content);
             _schools = new ObservableCollection<EdoovillagesForPicker>(edoovillagesFromContent);
-            foreach (var school in _schools)
-                EdoovillagesPicker.Items.Add(school.Title);
+            foreach (var school in _schools)     
+                    EdoovillagesPicker.Items.Add(school.Title);
+                
             base.OnAppearing();
         }
 
@@ -85,20 +92,24 @@ namespace LabdooApp01.Views
                 
             }
         }
-
-        public void SaveDootrip(Object render, EventArgs e)
+        /*
+         * Add Dootrip via POST Request and by just adding a title. The other fields are being ignored
+        */
+        public void SaveDootrip(Object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Forms should be saved now");
+            DisplayAlert("Your Dootrip to "+ DestinationEntry.Text  + " has been saved", "We did send you a verification email. After you verified your email address we will publish your dootrip. ", "OK");
+            string  dootripTitle = "Dootrip von "+ OriginCountry.Text + " nach " +  DestinationEntry.Text; 
+            var dootrip = new Dootrips { Title = "Title" + dootripTitle };
+            var content = JsonConvert.SerializeObject(dootrip);
+            _client.PostAsync(Url2, new StringContent(content));
+            /*
+             * TODO: 
+             * -add all required fields to the POST request and form. Minimize required fields on labdoo.org
+             * -Add dootrip to dootripPage view
+             */
         }
 /*
-        private IList<EdoovillagesForPicker> GetEdoovillages()
-        {
-            return new List<EdoovillagesForPicker>
-        {
-            new EdoovillagesForPicker{ Id = 1, Title ="PNH Orphanage Nepal" },
-             new EdoovillagesForPicker{ Id = 1, Title ="Hope School Kathmandu" }
-        };
-        }*/
+     
 
          /*
           * EventHandler for Departure DatePicker

@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys ="clr-namespace:System;assembly=mscorlib"
              x:Class="LabdooApp01.Views.AddDootripPage"
-             Title="Add Dootrip">
+             Title="Create Dootrip - transport a laptop">
     <ScrollView>
         <TableView HasUnevenRows="True" Intent="Form" >
             <TableRoot >
-                <TableSection Title="Your trip" >
-                    <EntryCell LabelColor="Black" Label="Destination*" Placeholder=""></EntryCell>
+                <TableSection Title="Transport a laptop o" >
+                    <EntryCell  x:Name="DestinationEntry"  LabelColor="Black" Label="Destination*" Placeholder=""></EntryCell>
                     
                     <ViewCell>
                         <StackLayout>
@@ -31,7 +31,7 @@
                         </StackLayout>
                     </ViewCell>
                     <EntryCell Label="Origin of your trip (city)*" Placeholder=""></EntryCell>
-                    <EntryCell  Label="Origin of your trip (country)*" Placeholder=""></EntryCell>
+                    <EntryCell x:Name="OriginCountry" Label="Origin of your trip (country)*" Placeholder=""></EntryCell>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" Padding="13,0">
                             <Label  Text="Departure Date*" VerticalOptions="Center" />
@@ -41,7 +41,8 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" Padding="13,0">
                             <Label Text="Arrival Date*" VerticalOptions="Center"/>
-                            <DatePicker x:Name="ArrivalDatePicker" Date="{Binding Source={x:Reference DepartureDatePicker}, Path=Value}" Format="dd MM yyyy" MinimumDate="01 01 2017" DateSelected="DatePicker_ArrivalDateSelected" HorizontalOptions="EndAndExpand"/>
+                            <!-- , Path=Value-->
+                            <DatePicker x:Name="ArrivalDatePicker" Date="{Binding Source={x:Reference DepartureDatePicker}}" Format="dd MM yyyy" MinimumDate="01 01 2017" DateSelected="DatePicker_ArrivalDateSelected" HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
                     </ViewCell>
                     <EntryCell LabelColor="Black" Label="Number of dootronics you can carry*" Placeholder="" Keyboard="Numeric" ></EntryCell>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
@@ -10,20 +12,10 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Newtonsoft.Json;
-using System.Collections.ObjectModel;
 
-
-/*
- * View of " Dootrip page" which contains a list of the dootrips
- */
 namespace LabdooApp01.Views
 {
-
-    /*
-    * helperclass to create Edoovillage objects for the Edoovillage picker
-    */
-    public class Dootrips
+    public class Dootronics
     {
         // public int Id { get; set; }
         public string Title { get; set; }
@@ -31,19 +23,18 @@ namespace LabdooApp01.Views
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DootripPage : ContentPage
+    public partial class DootronicsPage : ContentPage
     {
 
-        private IList<Dootrips> _dootrips;
+        private IList<Dootrips> _dootronics;
         private const string Url = "http://jsonplaceholder.typicode.com/posts";
-        public ObservableCollection<Dootrips> _dootripsCollection;
+        public ObservableCollection<Dootronics> _dootronicsCollection;
 
 
-        public DootripPage()
+        public DootronicsPage()
         {
             InitializeComponent();
         }
-
         async void AddDootrip_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddDootripPage());
@@ -57,15 +48,13 @@ namespace LabdooApp01.Views
 
             var client = new HttpClient();
             var content = await client.GetStringAsync(Url);
-            var dootripsFromContent = JsonConvert.DeserializeObject<List<Dootrips>>(content);
-            _dootripsCollection = new ObservableCollection<Dootrips>(dootripsFromContent);
-            dootripListView.ItemsSource = _dootripsCollection;
+            var dootronicsFromContent = JsonConvert.DeserializeObject<List<Dootronics>>(content);
+            _dootronicsCollection = new ObservableCollection<Dootronics>(dootronicsFromContent);
+            dootripListView.ItemsSource = _dootronicsCollection;
 
             base.OnAppearing();
         }
 
-
     }
 
-    
 }

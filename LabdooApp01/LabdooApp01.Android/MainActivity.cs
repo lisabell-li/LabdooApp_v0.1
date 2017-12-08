@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using System.Net;
 
 namespace LabdooApp01.Droid
 {
@@ -12,8 +13,14 @@ namespace LabdooApp01.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
+/*
+#if DEBUG
+            ServicePointManager.ServerCertificateValidationCallback += (o, certificate, chain, errors) => true;
+#endif*/
 
+
+            base.OnCreate(bundle);
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             LoadApplication(new App());

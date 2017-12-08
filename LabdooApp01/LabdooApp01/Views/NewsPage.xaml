@@ -1,23 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:LabdooApp01.ViewModels;assembly=LabdooApp01"
              x:Class="LabdooApp01.Views.NewsPage"
+              BackgroundColor="#004586"
              Title="NewsPage">
-    <ScrollView>
-        <StackLayout Padding="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Orientation="Vertical" Spacing="15">
-            <Label Text="{Binding Source={x:Reference distanceSlider}, Path=Value, StringFormat='Show news in distance of {0:F1} km'} "/>
-            <Slider x:Name="distanceSlider"/>
-            <Label Text="Neuer Hub in Berlin"/>
-            <Button Text="Weiterlesen" Command=""/>
-            <Label Text="Erfolgreicher Sanititzing Workhuop in Zürich"/>
-            <Button Text="Weiterlesen" Command=""/>
-            <Label Text="15 Laptops haben Kenia erreicht."/>
-            <Button Text="Weiterlesen" Command=""/>
-            <Label Text="Labdoo Konferenz in Barcelona"/>
-            <Button Text="Weiterlesen" Command=""/>
-            <Label Text="Erfolgreicher Sanititzing Workhuop in Zürich"/>
-            <Button Text="Weiterlesen" Command=""/>
-            <Label Text=""/>
-        </StackLayout>
-    </ScrollView>
+    <ContentPage.BindingContext>
+        <viewModels:TwitterViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="5,10">
+        <ListView ItemsSource="{Binding Tweets}"
+              HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{Binding ImageUrl}"
+                     WidthRequest="60"
+                     HeightRequest="60"
+                     VerticalOptions="Start"/>
+
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding ScreenName}"
+                       TextColor="#ff6309"
+                       FontSize="22"/>
+                                <Label Text="{Binding Text}"
+                    TextColor="White"
+                    FontSize="18"/>
+                                <Image Source="{Binding MediaUrl}"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

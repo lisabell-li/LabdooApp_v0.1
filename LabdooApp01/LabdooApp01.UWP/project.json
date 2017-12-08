@@ -2,6 +2,7 @@
   "dependencies": {
     "Microsoft.Net.Http": "2.2.29",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "modernhttpclient": "2.4.2",
     "Newtonsoft.Json": "10.0.3",
     "Xamarin.Forms": "2.3.4.224"
   },
